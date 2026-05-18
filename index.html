@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+      <div class="container-fluid">
+        <a href="index.html" class="navbar-brand"><img src="https://img.icons8.com/?size=100&id=AmE9lLCid7lN&format=png&color=000000" alt="" width="40" height="40" class="d-inline-block align-text-top"></a>
+        <a class="navbar-brand" href="index.html">Library</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+          </ul>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- End of Nav component -->
+    <!-- Image background Main splash section with add book button -->
+     <div class="position-relative overflow-hidden p-3 p-md-5 text-center bg-light hero-section1">
+    <div class="p-5 col-md-5 p-lg-5 mx-auto my-5 hero-content1">
+      <h1 class="display-5 fw-normal">Add some Books!</h1>
+      <p class="lead fw-normal">A library collection will be displayed below as cards.</p>
+      <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Book</button>
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
+<!-- Hero Section -->
+    <div class="px-4 text-center border-bottom pt-3">
+    <div class="col-lg-9 col-md-8 col-sm-8 mx-auto">
+      <p class="lead mb-4">Manage and track your book collection with this free library management system web app, built with Bootstrap.</p>
+    </div>
+  </div>
+<!-- End of Hero Section -->
+    <div class="container-fluid mt-4 mb-4">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>Welcome to the Library</h1>
+                <p class="lead">This is a simple library management system built with HTML, CSS, and JavaScript.</p>
+            </div>
+        </div>
+    </div>
+<!-- Here are the book cards -->
+<div class="album py-5 bg-light">
+    <div class="container-fluid">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 main-cards">
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em" text-anchor="middle">Thumbnail</text></svg>
+            <!-- EXAMPLE CARD -->
+            <div class="card-body">
+              <h4 class="card-title">Book Name</h4>
+              <p class="card-text">Written by Author ${name}. This is a sypnosis/description of the book.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <input type="checkbox" class="btn-check toggle-checkbox" id="btn-check-outlined1" autocomplete="off">
+                  <label class="btn btn-outline-success toggle-check" for="btn-check-outlined1">Not Read</label><br>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary remove-book-btn" data-index="0">Delete</button>
+                </div>
+                <small class="text-muted">... pages</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- DYNAMIC CARDS Baing ADDED Inside of the main-cards DIV-->
+      </div>
+    </div>
+  </div>
+  <!-- End of cards -->
+<!-- add Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Book Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Form elements for adding book details -->
+        <form id="add-book-form" novalidate>
+          <div class="mb-3">
+            <label for="bookTitle" class="form-label">Title</label>
+            <input type="text" class="form-control" id="book-title" required placeholder="Book Title">
+            <invalid-feedback>
+              Please provide a book title.
+            </invalid-feedback>
+          </div>
+          <div class="mb-3">
+            <label for="bookAuthor" class="form-label">Author</label>
+            <input type="text" class="form-control" id="book-author" required placeholder="Author Name">
+            <invalid-feedback>
+              Please provide an author name.
+            </invalid-feedback>
+          </div>
+          <div class="mb-3">
+            <label for="bookDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="book-description" rows="3" placeholder="Book Description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="bookPages" class="form-label" number-only>Pages</label>
+            <input type="number" class="form-control" id="book-pages" placeholder="Number of Pages">
+            <!-- add book check -->
+          </div>
+          <div class="form-check mt-3">
+            <input class="form-check-input" type="checkbox" id="book-read">
+            <label class="form-check-label" for="book-read">
+              Already Read This?
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-outline-success" id="save-book-btn" value="Save">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- End of main container -->
+    </div>
+</body>
+<footer class="py-3 my-4">
+    <p class="text-center text-muted">Made by VideoGabe ❤️</p>
+  </footer>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+ <script src="logic.js"></script>
+</html>
