@@ -7,7 +7,7 @@ let editingIndex = null;
 document.querySelector('.main-cards').addEventListener('click', function (event) {
   if (event.target.classList.contains('remove-book-btn')) {
     const index = event.target.getAttribute('data-index');
-    removeBookFromLibrary(index);
+    book.removeBookFromLibrary(index);
   }
 });
 
@@ -69,10 +69,10 @@ saveBookBtn.addEventListener('click', function (event) {
       read
     );
 
-    addBookToLibrary(newBook);
+    book.addBookToLibrary(newBook);
   }
 
-  displayBooks();
+  book.displayBooks();
 
   const modal =
     bootstrap.Modal.getInstance(
@@ -85,39 +85,27 @@ saveBookBtn.addEventListener('click', function (event) {
 // Books Array
 let myLibrary = [];
 
-// Book Constructor
-function Book(title, author, description, pages, read) {
-  this.uniqueID = crypto.randomUUID();
-  this.title = title;
-  this.author = author;
-  this.description = description;
-  this.pages = pages;
-  this.read = read;
-}
-
-// Add Book to Library
-function addBookToLibrary(book) {
-  myLibrary.push(book);
-}
-
-//removes book from library
-function removeBookFromLibrary(index) {
-  myLibrary.splice(index, 1);
-  displayBooks(); // Refresh the displayed books after removal
-}
-
-//  Create a book manually with a form/modal or with a API call and add it to the library
-const book1 = new Book('The Great Gatsby', 'F. Scott Fitzgerald', 'A classic American novel', 180, true);
-const book2 = new Book('1984', 'George Orwell', 'A dystopian social science fiction novel', 328, false);
-addBookToLibrary(book1);
-addBookToLibrary(book2);
-console.log(myLibrary);
-
-// Dynamically create cards for each book in the library
-function displayBooks() {
-  const mainCards = document.querySelector('.main-cards');
-  mainCards.innerHTML = ''; // Clear existing cards
-  myLibrary.forEach((book, index) => {
+// Refactor to class
+class Book {
+  constructor(title, author, description, pages, read) {
+    this.uniqueID = crypto.randomUUID();
+    this.title = title;
+    this.author = author;
+    this.description = description;
+    this.pages = pages;
+    this.read = read;
+  }
+  addBookToLibrary(book) {
+      myLibrary.push(book);
+    }
+  removeBookFromLibrary(index) {
+      myLibrary.splice(index, 1);
+      book.displayBooks(); // Refresh the displayed books after removal
+    }
+  displayBooks() {
+    const mainCards = document.querySelector('.main-cards');
+    mainCards.innerHTML = ''; // Clear existing cards
+    myLibrary.forEach((book, index) => {
     console.log(index);
     const card = document.createElement('div');
     card.classList.add('col');
@@ -145,8 +133,17 @@ function displayBooks() {
     mainCards.appendChild(card);
   });
 }
+}
 
-displayBooks(); // Initial display of books
+
+//  Create a book manually with a form/modal or with a API call and add it to the library
+const book = new Book('The Great Gatsby', 'F. Scott Fitzgerald', 'A classic American novel', 180, true);
+book.addBookToLibrary(book);
+const book2 = new Book('1984', 'George Orwell', 'A dystopian social science fiction novel', 328, false);
+book2.addBookToLibrary(book2);
+console.log(myLibrary);
+
+book.displayBooks(); // Initial display of books
 
 
 // edit book details
@@ -181,7 +178,7 @@ document.querySelector('.main-cards').addEventListener('click', function (event)
       book.pages = document.getElementById('book-pages').value;
       book.read = document.getElementById('book-read').checked;
       // Refresh the displayed books
-      displayBooks();
+      book.displayBooks();
       // Close the modal
       addBookModal.hide();
       // Reset editing index
